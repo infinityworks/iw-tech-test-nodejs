@@ -14,6 +14,11 @@ module.exports = () => {
 
     function init() {
         app.use(express.static('public'));
+
+        app.get('/', (req, res) => {
+            return res.send();
+        });
+
         app.get('/api', (req, res) => {
             return res.json({ response: 'ok' });
         })
