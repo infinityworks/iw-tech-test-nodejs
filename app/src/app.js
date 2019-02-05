@@ -22,6 +22,10 @@ module.exports = (ratingController) => {
         app.get('/api', (req, res) => {
             return ratingController.getAuthorities(req, res);
         })
+
+        app.get('/api/:authorityId', (req, res) => {
+            return ratingController.getAuthority(req, res);
+        });
     }
 
     return {
