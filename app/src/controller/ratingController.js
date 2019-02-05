@@ -1,6 +1,6 @@
 const requestPromise = require('request-promise-native');
 
-module.exports = () => {
+module.exports = (authorityMapper) => {
     async function getAuthorities(req, res) {
         const requestParams = {
             uri: 'http://api.ratings.food.gov.uk/Authorities',
@@ -10,15 +10,19 @@ module.exports = () => {
             },
         };
 
-        let response = null;
+        let authoritiesResponse = null;
 
         try {
-            response = await requestPromise(requestParams);
+            authoritiesResponse = await requestPromise(requestParams);
         } catch (err) {
             console.log(err);
             return res.status(500).json({ error: 'Unable to access FSA API' });
         }
 
+        const authoritiesParsed = JSON.parse(authoritiesResponse);
+        const authorityModels = authoritiesParsed.authorities.map(authority => authorityMapper.map(authority));
+
+        const response = authorityModels.map(authority => authority.toObject());
         return res.json(response);
     }
 

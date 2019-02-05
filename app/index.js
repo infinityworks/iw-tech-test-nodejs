@@ -1,7 +1,10 @@
 const RatingController = require('./src/controller/ratingController');
 
+const AuthorityMapper = require('./src/mapper/authority');
 
-const ratingController = RatingController();
+const authorityMapper = AuthorityMapper();
+const ratingController = RatingController(authorityMapper);
+
 const App = require('./src/app')(ratingController);
 
 App.run();
