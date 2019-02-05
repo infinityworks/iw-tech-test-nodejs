@@ -1,0 +1,19 @@
+{
+  "name": "fsa-ratings",
+  "version": "0.1.0",
+  "description": "FSA Ratings app for Infinity Works tech test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/infinityworks/iw-tech-test-nodejs.git"
+  },
+  "author": "Infinity Works Consulting",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/infinityworks/iw-tech-test-nodejs/issues"
+  },
+  "homepage": "https://github.com/infinityworks/iw-tech-test-nodejs#readme"
+}
