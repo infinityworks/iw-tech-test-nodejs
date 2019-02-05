@@ -1,6 +1,6 @@
 const express = require('express');
 
-module.exports = () => {
+module.exports = (ratingController) => {
     const DEFAULT_PORT = 8080;
     const app = express();
     init();
@@ -20,7 +20,7 @@ module.exports = () => {
         });
 
         app.get('/api', (req, res) => {
-            return res.json({ response: 'ok' });
+            return ratingController.getAuthorities(req, res);
         })
     }
 
