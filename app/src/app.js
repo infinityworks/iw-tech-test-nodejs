@@ -15,6 +15,10 @@ module.exports = (ratingController) => {
     function init() {
         app.use(express.static('public'));
 
+        app.get('/favicon.ico', function(req, res){
+            res.status(404).end();
+        });
+
         app.get('/', (req, res) => {
             return res.send();
         });
