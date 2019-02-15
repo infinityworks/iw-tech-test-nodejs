@@ -15,4 +15,4 @@ module.exports = class Authority {
     toObject() {
         return { id: this._id, name: this._name };
     }
-}
+};

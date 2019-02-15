@@ -1,4 +1,4 @@
-# Infinity Works - Full Stack Tech Test
+# Infinity Works - Full Stack Tech Test: Node.js
 
 ![Preview of Frontend](preview.png)
 

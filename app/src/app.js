@@ -9,15 +9,12 @@ module.exports = (ratingController) => {
         init();
         app.listen(DEFAULT_PORT, () => {
             console.log(`Server listening on http://localhost:${DEFAULT_PORT} ...`);
+            console.log('Both the website and the app API are served on this URL');
         });
     }
 
     function init() {
         app.use(express.static('public'));
-
-        app.get('/favicon.ico', function(req, res){
-            res.status(404).end();
-        });
 
         app.get('/', (req, res) => {
             return res.send();
