@@ -14,7 +14,7 @@
 * Switch into app directory: `cd app`
 * Install dependencies: `npm install`
 * Run it: `npm start`
-* View it: https://localhost:8080 and https://localhost:8080/api
+* View it: http://localhost:8080 and http://localhost:8080/api
 
 ## Submission
 
