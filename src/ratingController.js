@@ -1,8 +1,7 @@
 const requestPromise = require('request-promise-native');
-const AuthorityRating = require('../model/authorityRating');
 
-module.exports = (authorityMapper) => {
-    async function getAuthorities(req, res) {
+module.exports = {
+    getAuthorities: async function (req, res) {
         const requestParams = {
             uri: 'http://api.ratings.food.gov.uk/Authorities',
             headers: {
@@ -21,13 +20,18 @@ module.exports = (authorityMapper) => {
         }
 
         const authoritiesParsed = JSON.parse(authoritiesResponse);
-        const authorityModels = authoritiesParsed.authorities.map(authority => authorityMapper.map(authority));
 
-        const response = authorityModels.map(authority => authority.toObject());
+        const response = authoritiesParsed.authorities.map(json => {
+            return {
+                id: json.LocalAuthorityId,
+                name: json.Name
+            }
+        }, authoritiesParsed);
+
         return res.json(response);
-    }
+    },
 
-    async function getAuthority(req, res) {
+    getAuthority: async function (req, res) {
         const { authorityId } = req.params;
 
         if (isNaN(authorityId)) {
@@ -36,32 +40,27 @@ module.exports = (authorityMapper) => {
 
         // This is just sample data to demonstrate the contract of the API
         const oneRatingsSample = [
-            new AuthorityRating('5-star', 22.41),
-            new AuthorityRating('4-star', 43.13),
-            new AuthorityRating('3-star', 12.97),
-            new AuthorityRating('2-star', 1.54),
-            new AuthorityRating('1-star', 17.84),
-            new AuthorityRating('Exempt', 2.11),
+            { name: '5-star', value: 22.41 },
+            { name: '4-star', value: 43.13 },
+            { name: '3-star', value: 12.97 },
+            { name: '2-star', value: 1.54 },
+            { name: '1-star', value: 17.84 },
+            { name: 'Exempt', value: 2.11 },
         ];
 
         const anotherRatingsSample = [
-            new AuthorityRating('5-star', 50),
-            new AuthorityRating('4-star', 0),
-            new AuthorityRating('3-star', 0),
-            new AuthorityRating('2-star', 0),
-            new AuthorityRating('1-star', 25),
-            new AuthorityRating('Exempt', 25),
+            { name: '5-star', value: 50 },
+            { name: '4-star', value: 0 },
+            { name: '3-star', value: 0 },
+            { name: '2-star', value: 0 },
+            { name: '1-star', value: 25 },
+            { name: 'Exempt', value: 25 },
         ];
 
         const ratings = (authorityId % 2) === 1
             ? oneRatingsSample
             : anotherRatingsSample;
 
-        return res.json(ratings.map(rating => rating.toObject()));
+        return res.json(ratings);
     }
-
-    return {
-        getAuthorities,
-        getAuthority,
-    };
 };

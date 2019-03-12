@@ -2,10 +2,10 @@
   "name": "fsa-ratings",
   "version": "0.1.0",
   "description": "FSA Ratings app for Infinity Works tech test",
-  "main": "index.js",
+  "main": "src/index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "mocha ./test/**/*.test.js"
+    "start": "node src/index.js",
+    "test": "echo not implemented"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,5 @@
     "request": "^2.88.0",
     "request-promise-native": "^1.0.5"
   },
-  "devDependencies": {
-    "mocha": "^6.0.1"
-  }
+  "devDependencies": {}
 }
