@@ -11,7 +11,6 @@
 
 ## Getting Started
 
-* Switch into app directory: `cd app`
 * Install dependencies: `npm install`
 * Run it: `npm start`
 * Test it: `npm test`
