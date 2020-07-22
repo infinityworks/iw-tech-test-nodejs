@@ -1,9 +1,8 @@
-const requestPromise = require('request-promise-native');
+const fetch = require('node-fetch')
 
 module.exports = {
     getAuthorities: async function (req, res) {
         const requestParams = {
-            uri: 'http://api.ratings.food.gov.uk/Authorities',
             headers: {
                 Accept: 'application/json',
                 'x-api-version': '2',
@@ -13,13 +12,13 @@ module.exports = {
         let authoritiesResponse = null;
 
         try {
-            authoritiesResponse = await requestPromise(requestParams);
+            authoritiesResponse = await fetch('http://api.ratings.food.gov.uk/Authorities', requestParams);
         } catch (err) {
             console.log(err);
             return res.status(500).json({ error: 'Unable to access FSA API' });
         }
 
-        const authoritiesParsed = JSON.parse(authoritiesResponse);
+        const authoritiesParsed = await authoritiesResponse.json();
 
         const response = authoritiesParsed.authorities.map(json => {
             return {
