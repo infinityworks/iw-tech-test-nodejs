@@ -19,7 +19,7 @@
   "homepage": "https://github.com/infinityworks/iw-tech-test-nodejs#readme",
   "dependencies": {
     "express": "^4.16.4",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.7"
   },
   "devDependencies": {}
 }
